@@ -1,11 +1,21 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const app = express();
 
+const User = require('./models/User');
+
+//Body Parser
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+
 //connect to mongoose
 
-const db = require('./config/keys').mongoURI;
+
 
 // mongoose
 // .connect(db)
@@ -13,11 +23,17 @@ const db = require('./config/keys').mongoURI;
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://vishnu:vishnu1@ds115874.mlab.com:15874/developer-connect', { useNewUrlParser: true }).then((db)=>{
+mongoose.connect('mongodb://localhost:27017/developer-connect', { useNewUrlParser: true }).then((db)=>{
 	console.log('MongoDB connected');
 }).catch(error=> console.log("error"));
 
 
+
+// Passport middleware
+app.use(passport.initialize());
+
+// Passport Config
+require('./config/passport')(passport);
 
 // routes 
 
@@ -33,6 +49,6 @@ app.use('/api/posts', posts);
 
 app.get('/', (req, res) => res.send('hello people'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log('Server is running'));
