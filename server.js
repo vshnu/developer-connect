@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost:27017/developer-connect', { useNewUrlParser: true }).then((db)=>{
+mongoose.connect('mongodb://vishnu:vishnu1@ds127634.mlab.com:27634/developer', { useNewUrlParser: true }).then((db)=>{
 	console.log('MongoDB connected');
 }).catch(error=> console.log("error"));
 

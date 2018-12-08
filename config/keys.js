@@ -1,4 +1,6 @@
+
+
 module.exports = {
-    mongoDbUrl: 'mongodb://localhost:27017/developer-connect',
+    mongoDbUrl: 'mongodb://vishnu:vishnu@123@ds127634.mlab.com:27634/developer',
     secretOrKey: 'secret'
 }
